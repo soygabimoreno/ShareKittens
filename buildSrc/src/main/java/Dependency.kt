@@ -46,6 +46,7 @@ object TestVersion {
 
 object ModulesDependency {
     val CORE = ":core"
+    val CORE_RES = ":coreRes"
     val CORE_DOMAIN = ":coreDomain"
     val CORE_INFRASTRUCTURE = ":coreInfrastructure"
     val CORE_DATA = ":coreData"

@@ -1,6 +1,7 @@
 include(":app")
 
 include(":core")
+include(":coreRes")
 
 //include(":coreAnalytics")
 //include(":coreDb")
