@@ -1,4 +1,4 @@
-package soy.gabimoreno.sharekittens
+package soy.gabimoreno.sharekittens.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

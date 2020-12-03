@@ -1,47 +1,76 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-android-extensions"
+    id "kotlin-kapt"
+    id "com.google.gms.google-services"
+    id "com.google.firebase.crashlytics"
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    Properties properties = new Properties()
+    properties.load(project.file('../local.properties').newDataInputStream())
+
+    signingConfigs {
+        release {
+            keyAlias properties.getProperty('keystore.keyAlias')
+            storeFile file(properties.getProperty('keystore.storeFile'))
+            storePassword properties.getProperty('keystore.storePassword')
+            keyPassword properties.getProperty('keystore.keyPassword')
+        }
+    }
+
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "soy.gabimoreno.sharekittens"
-        minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.versionCode
+        versionName project.ext.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    bundle {
+        density { enableSplit true }
+        abi { enableSplit true }
+        language { enableSplit false }
+    }
+
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            splits.abi.enable = false
+            splits.density.enable = false
+            ext.enableCrashlytics = false
+        }
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    testOptions {
+        animationsDisabled true
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation project(ModulesDependency.CORE)
+}
 
-    implementation 'com.giphy.sdk:ui:2.0.5'
-
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
 }
