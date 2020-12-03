@@ -1,0 +1,8 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+    implementation AndroidDependency.APP_COMPAT
+    implementation AndroidDependency.RECYCLER_VIEW
+    implementation AndroidDependency.SWIPE_REFRESH_LAYOUT
+    implementation GoogleDependency.GSON
+}

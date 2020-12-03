@@ -70,6 +70,24 @@ android {
 dependencies {
     implementation project(ModulesDependency.CORE)
     implementation project(ModulesDependency.CORE_RES)
+    implementation project(ModulesDependency.CORE_ANALYTICS)
+
+    implementation project(ModulesDependency.LIB_FRAMEWORK)
+
+    implementation KotlinDependency.COROUTINES
+
+    implementation GoogleDependency.FIREBASE_ANALYTICS
+    implementation GoogleDependency.FIREBASE_CRASHLYTICS
+
+    implementation KoinDependency.KOIN_SCOPE
+    implementation KoinDependency.KOIN_VIEW_MODEL
+
+    implementation ArrowDependency.ARROW_CORE
+    implementation ArrowDependency.ARROW_SYNTAX
+    kapt ArrowDependency.ARROW_META
+
+    implementation(AmplitudeDependency.AMPLITUDE)
+    implementation(AmplitudeDependency.OK_HTTP)
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
