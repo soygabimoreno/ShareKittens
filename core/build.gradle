@@ -4,9 +4,10 @@ dependencies {
     //    implementation project(ModulesDependency.CORE_DOMAIN)
 //    implementation project(ModulesDependency.CORE_INFRASTRUCTURE)
     implementation project(ModulesDependency.CORE_DATA)
+    implementation project(ModulesDependency.CORE_RES)
 //    implementation project(ModulesDependency.CORE_NETWORK)
 //    implementation project(ModulesDependency.CORE_DB)
-//    implementation project(ModulesDependency.CORE_ANALYTICS)
+    implementation project(ModulesDependency.CORE_ANALYTICS)
 //
     implementation project(ModulesDependency.LIB_FRAMEWORK)
     implementation project(ModulesDependency.LIB_BASE)

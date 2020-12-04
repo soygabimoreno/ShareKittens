@@ -4,8 +4,8 @@ import android.animation.Animator
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash.*
-import soy.gabimoreno.sharekittens.core.MainActivity
 import soy.gabimoreno.sharekittens.core.R
+import soy.gabimoreno.sharekittens.core.presentation.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
