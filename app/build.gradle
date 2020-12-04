@@ -70,6 +70,7 @@ android {
 dependencies {
     implementation project(ModulesDependency.CORE)
     implementation project(ModulesDependency.CORE_RES)
+    implementation project(ModulesDependency.CORE_DATA)
     implementation project(ModulesDependency.CORE_ANALYTICS)
 
     implementation project(ModulesDependency.LIB_FRAMEWORK)
@@ -85,9 +86,12 @@ dependencies {
     implementation ArrowDependency.ARROW_CORE
     implementation ArrowDependency.ARROW_SYNTAX
     kapt ArrowDependency.ARROW_META
+    implementation MiscellanyDependency.GIPHY
 
     implementation(AmplitudeDependency.AMPLITUDE)
     implementation(AmplitudeDependency.OK_HTTP)
+
+    implementation MiscellanyDependency.GIPHY
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

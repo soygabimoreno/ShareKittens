@@ -2,6 +2,7 @@ package soy.gabimoreno.sharekittens
 
 import android.app.Application
 import com.amplitude.api.AmplitudeClient
+import com.giphy.sdk.ui.Giphy
 import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,12 +19,16 @@ import soy.gabimoreno.sharekittens.di.serviceLocator
 
 class App : Application() {
 
+    private val remoteConfig: RemoteConfig by inject()
+    private val errorTrackerComponent: ErrorTrackerComponent by inject()
+
     override fun onCreate() {
         super.onCreate()
         KLog.launch(BuildConfig.DEBUG)
         initKoin()
         initFirebase()
         initAmplitude()
+        initGiphy()
     }
 
     private fun initKoin() {
@@ -39,8 +44,6 @@ class App : Application() {
     }
 
     private fun initAmplitude() {
-        val remoteConfig: RemoteConfig by inject()
-        val errorTrackerComponent: ErrorTrackerComponent by inject()
         val amplitudeClient: AmplitudeClient by inject()
         CoroutineScope(Dispatchers.IO).launch {
             remoteConfig.getAmplitudeApiKey()
@@ -52,6 +55,22 @@ class App : Application() {
                         amplitudeClient.initialize(
                             this@App,
                             amplitudeApiKey
+                        )
+                    })
+        }
+    }
+
+    private fun initGiphy() {
+        CoroutineScope(Dispatchers.IO).launch {
+            remoteConfig.getGiphyApiKey()
+                .fold(
+                    {
+                        errorTrackerComponent.trackError(it)
+                    },
+                    { giphyApiKey ->
+                        Giphy.configure(
+                            this@App,
+                            giphyApiKey
                         )
                     })
         }

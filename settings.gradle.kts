@@ -5,7 +5,7 @@ include(":coreRes")
 
 include(":coreAnalytics")
 //include(":coreDb")
-//include(":coreData")
+include(":coreData")
 //include(":coreNetwork")
 include(":coreDomain")
 //include(":coreInfrastructure")

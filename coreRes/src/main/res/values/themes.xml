@@ -11,10 +11,10 @@
         <item name="android:textColor">@color/accent</item>
     </style>
 
-    <!--    <style name="AppTheme.Splash">-->
-    <!--        <item name="android:statusBarColor">@color/primary</item>-->
-    <!--        <item name="android:windowBackground">@drawable/splash_drawable</item>-->
-    <!--    </style>-->
+    <style name="AppTheme.Splash">
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowBackground">@drawable/splash_drawable</item>
+    </style>
 
     <!--    <style name="ImageButton">-->
     <!--        <item name="android:background">@drawable/bg_oval_accent_ripple</item>-->

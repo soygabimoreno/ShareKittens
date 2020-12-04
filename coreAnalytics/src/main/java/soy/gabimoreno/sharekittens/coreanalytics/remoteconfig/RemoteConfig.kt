@@ -13,19 +13,15 @@ class RemoteConfig(
 ) {
 
     companion object {
-        private const val AMPLITUDE_API_KEY_VERSUS = "AMPLITUDE_API_KEY_VERSUS"
+        private const val AMPLITUDE_API_KEY_SHARE_KITTENS = "AMPLITUDE_API_KEY_SHARE_KITTENS"
+        private const val GIPHY_API_KEY_SHARE_KITTENS_DEBUG = "GIPHY_API_KEY_SHARE_KITTENS_DEBUG"
     }
 
     init {
-        val defaults = mapOf(
-            AMPLITUDE_API_KEY_VERSUS to ""
-        )
-
         val configSettings = remoteConfigSettings {
             minimumFetchIntervalInSeconds = 3600
         }
         firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
-        firebaseRemoteConfig.setDefaultsAsync(defaults)
         firebaseRemoteConfig
             .fetchAndActivate()
             .addOnFailureListener {
@@ -34,6 +30,10 @@ class RemoteConfig(
     }
 
     suspend fun getAmplitudeApiKey(): Either<Throwable, String> = withContext(Dispatchers.IO) {
-        Either.catch { firebaseRemoteConfig.getString(AMPLITUDE_API_KEY_VERSUS) }
+        Either.catch { firebaseRemoteConfig.getString(AMPLITUDE_API_KEY_SHARE_KITTENS) }
+    }
+
+    suspend fun getGiphyApiKey(): Either<Throwable, String> = withContext(Dispatchers.IO) {
+        Either.catch { firebaseRemoteConfig.getString(GIPHY_API_KEY_SHARE_KITTENS_DEBUG) }
     }
 }
