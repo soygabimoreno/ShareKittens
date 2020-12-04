@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         )
         GiphyDialogFragment.newInstance().show(
             supportFragmentManager,
-            "giphy_dialog"
+            "GiphyDialogFragment"
         )
     }
 }

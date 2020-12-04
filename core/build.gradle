@@ -9,7 +9,7 @@ dependencies {
 //    implementation project(ModulesDependency.CORE_ANALYTICS)
 //
     implementation project(ModulesDependency.LIB_FRAMEWORK)
-//    implementation project(ModulesDependency.LIB_BASE)
+    implementation project(ModulesDependency.LIB_BASE)
 //    implementation project(ModulesDependency.LIB_IMAGE_LOADER)
 
     implementation KotlinDependency.KOTLIN

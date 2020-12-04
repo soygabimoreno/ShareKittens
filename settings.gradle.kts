@@ -11,5 +11,5 @@ include(":coreDomain")
 //include(":coreInfrastructure")
 //
 include(":libFramework")
-//include(":libBase")
+include(":libBase")
 //include(":libImageLoader")
