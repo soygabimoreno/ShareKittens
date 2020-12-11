@@ -1,10 +1,16 @@
 package soy.gabimoreno.sharekittens.core.presentation.kittens
 
+import android.content.Intent
+import com.giphy.sdk.core.models.Media
+import com.giphy.sdk.ui.pagination.GPHContent
+import com.giphy.sdk.ui.views.GPHGridCallback
+import kotlinx.android.synthetic.main.fragment_kittens.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import soy.gabimoreno.libbase.fragment.BaseFragment
 import soy.gabimoreno.libframework.extension.debugToast
 import soy.gabimoreno.libframework.extension.exhaustive
 import soy.gabimoreno.sharekittens.core.R
+import soy.gabimoreno.sharekittens.core.framework.DownloadGif
 
 class KittensFragment : BaseFragment<
         KittensViewModel.ViewState,
@@ -20,6 +26,23 @@ class KittensFragment : BaseFragment<
     override val viewModel: KittensViewModel by viewModel()
 
     override fun initUI() {
+        initGiphyGridView()
+    }
+
+    private fun initGiphyGridView() {
+        ggv.showViewOnGiphy = false
+
+        val content = GPHContent.searchQuery("kitten")
+        ggv.content = content
+
+        ggv.callback = object : GPHGridCallback {
+            override fun contentDidUpdate(resultCount: Int) {
+            }
+
+            override fun didSelectMedia(media: Media) {
+                viewModel.handleGifSelected(media)
+            }
+        }
     }
 
     override fun renderViewState(viewState: KittensViewModel.ViewState) {
@@ -49,11 +72,33 @@ class KittensFragment : BaseFragment<
 
     override fun handleViewEvent(viewEvent: KittensViewModel.ViewEvents) {
         when (viewEvent) {
-            is KittensViewModel.ViewEvents.Foo -> foo(viewEvent.foo)
+            is KittensViewModel.ViewEvents.ShareGif -> shareGif(viewEvent.media)
         }.exhaustive
     }
 
-    private fun foo(foo: String) {
-        // TODO
+    private fun shareGif(media: Media) {
+        val url = media.images.original!!.gifUrl!!
+        val downloadGif = DownloadGif()
+        downloadGif(
+            requireContext(),
+            url
+        ) { uri ->
+            val sendIntent = Intent().apply {
+                type = "image/gif"
+                action = Intent.ACTION_SEND
+                putExtra(
+                    Intent.EXTRA_STREAM,
+                    uri
+                )
+                setPackage("com.whatsapp")
+                flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            }
+
+            try {
+                startActivity(sendIntent)
+            } catch (e: Exception) {
+                debugToast("e: ${e.message}")
+            }
+        }
     }
 }

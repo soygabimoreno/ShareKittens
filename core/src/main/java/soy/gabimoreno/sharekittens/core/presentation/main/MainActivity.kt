@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.view.Gravity
 import androidx.transition.Slide
-import com.giphy.sdk.ui.views.GiphyDialogFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import soy.gabimoreno.libbase.activity.StatelessBaseActivity
 import soy.gabimoreno.libframework.extension.exhaustive
@@ -36,12 +35,7 @@ class MainActivity : StatelessBaseActivity<
         } else super.onBackPressed()
     }
 
-    override fun initUI() {
-        GiphyDialogFragment.newInstance().show(
-            supportFragmentManager,
-            "GiphyDialogFragment"
-        )
-    }
+    override fun initUI() {}
 
     override fun handleViewEvent(viewEvent: MainViewModel.ViewEvents) {
         when (viewEvent) {

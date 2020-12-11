@@ -11,7 +11,7 @@ dependencies {
 //
     implementation project(ModulesDependency.LIB_FRAMEWORK)
     implementation project(ModulesDependency.LIB_BASE)
-//    implementation project(ModulesDependency.LIB_IMAGE_LOADER)
+    implementation project(ModulesDependency.LIB_IMAGE_LOADER)
 
     implementation KotlinDependency.KOTLIN
     implementation KotlinDependency.COROUTINES

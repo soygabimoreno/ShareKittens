@@ -1,0 +1,7 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+    implementation AndroidDependency.APP_COMPAT
+    implementation BumptechDependency.GLIDE
+    kapt BumptechDependency.GLIDE_COMPILER
+}

@@ -1,6 +1,7 @@
 package soy.gabimoreno.sharekittens.core.presentation.kittens
 
 import androidx.lifecycle.viewModelScope
+import com.giphy.sdk.core.models.Media
 import kotlinx.coroutines.launch
 import soy.gabimoreno.libbase.viewmodel.BaseViewModel
 import soy.gabimoreno.sharekittens.core.presentation.kittens.analytics.KittensEvents
@@ -24,6 +25,12 @@ class KittensViewModel(
         }
     }
 
+    fun handleGifSelected(media: Media) {
+        viewModelScope.launch {
+            sendViewEvent(ViewEvents.ShareGif(media))
+        }
+    }
+
     sealed class ViewState {
         object Loading : ViewState()
         object Error : ViewState()
@@ -31,6 +38,6 @@ class KittensViewModel(
     }
 
     sealed class ViewEvents {
-        data class Foo(val foo: String) : ViewEvents()
+        data class ShareGif(val media: Media) : ViewEvents()
     }
 }

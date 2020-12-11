@@ -12,4 +12,4 @@ include(":coreDomain")
 //
 include(":libFramework")
 include(":libBase")
-//include(":libImageLoader")
+include(":libImageLoader")

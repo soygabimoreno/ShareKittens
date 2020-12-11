@@ -1,6 +1,7 @@
 package soy.gabimoreno.sharekittens
 
 import android.app.Application
+import android.os.StrictMode
 import com.amplitude.api.AmplitudeClient
 import com.giphy.sdk.ui.Giphy
 import com.google.firebase.FirebaseApp
@@ -29,6 +30,7 @@ class App : Application() {
         initFirebase()
         initAmplitude()
         initGiphy()
+        enableShareGifs()
     }
 
     private fun initKoin() {
@@ -74,5 +76,10 @@ class App : Application() {
                         )
                     })
         }
+    }
+
+    private fun enableShareGifs() {
+        val builder = StrictMode.VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
     }
 }
