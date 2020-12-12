@@ -7,17 +7,23 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Environment
+import java.io.File
 
 class DownloadGif {
 
+    companion object {
+        private const val FILE_NAME = "kitten.gif"
+    }
+
     private lateinit var downloadManager: DownloadManager
-    private var enqueue: Long = 0
+    private var enqueue = 0L
 
     operator fun invoke(
         context: Context,
         url: String,
         onImageDownloaded: (Uri) -> Unit
     ) {
+        deleteLastFileIfExists()
         val receiver: BroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(
                 context: Context,
@@ -33,7 +39,7 @@ class DownloadGif {
                         if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(columnIndex)) {
                             val uriString = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI))
                             context.unregisterReceiver(this)
-                            return onImageDownloaded(Uri.parse(uriString))
+                            onImageDownloaded(Uri.parse(uriString))
                         }
                     }
                 }
@@ -47,8 +53,14 @@ class DownloadGif {
         val request = DownloadManager.Request(Uri.parse(url))
         request.setDestinationInExternalPublicDir(
             Environment.DIRECTORY_PICTURES,
-            "foo.gif"
+            FILE_NAME
         )
         enqueue = downloadManager.enqueue(request)
+    }
+
+    private fun deleteLastFileIfExists() {
+        val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val file = File("$dir/$FILE_NAME")
+        file.delete()
     }
 }
