@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#5176A6</color>
-    <color name="primaryDark">#25364d</color>
-    <color name="accent">#F26389</color>
+    <color name="primary">#9f5f80</color>
+    <color name="primaryDark">#583d72</color>
+    <color name="accent">#ffba93</color>
     <color name="secondary">#069DBF</color>
     <color name="background">#ffffff</color>
     <color name="gray">#989898</color>
@@ -14,12 +14,10 @@
     <color name="black">#000000</color>
     <color name="black_light">#1e1e1e</color>
 
-    <color name="pink">#F26389</color>
-    <color name="purple">#5176A6</color>
-    <color name="purple_dark">#25364d</color>
-    <color name="aqua">#069DBF</color>
-    <color name="green">#99BF60</color>
-    <color name="red">#F2594B</color>
+    <color name="pink">#9f5f80</color>
+    <color name="purple">#583d72</color>
+    <color name="cake">#ffba93</color>
+    <color name="orange">#ff8e71</color>
 
     <color name="primary_alpha_90">#e65176A6</color>
     <color name="primary_alpha_80">#cc5176A6</color>

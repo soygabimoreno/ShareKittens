@@ -1,10 +1,10 @@
 <resources>
 
-    <style name="AppTheme" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="@style/Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/secondary</item>
-        <item name="android:statusBarColor">@color/primary_alpha_80</item>
+        <item name="android:statusBarColor">@color/primary</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="colorControlHighlight">@color/gray_light_2</item>
         <item name="android:colorEdgeEffect">@color/gray_light_1</item>
