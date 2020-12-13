@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Kittens</string>
+
+    <string name="show_kittens">Show kittens</string>
+
+    <string name="menu_share">Share the app</string>
+    <string name="menu_email">Send an email</string>
+    <string name="menu_rate">Rate the app</string>
+    <string name="menu_info">Info</string>
+
+    <string name="share_title">Share the app</string>
+    <string name="share_text">Check this app for sharing kittens. It is awesome! 🙂\nhttps://play.google.com/store/apps/details?id=soy.gabimoreno.sharekittens</string>
+
+    <string name="email_title">Select email</string>
+    <string name="email_to">foniapps@gmail.com</string>
+    <string name="email_subject">EMAIL FROM SHARE KITTENS APP</string>
+    <string name="share_kitten">Share the kitten</string>
 </resources>

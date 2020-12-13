@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 import soy.gabimoreno.sharekittens.core.R
 import soy.gabimoreno.sharekittens.core.presentation.main.MainActivity
+import soy.gabimoreno.sharekittens.coreres.R as CoreResR
 
 class SplashActivity : AppCompatActivity() {
 
@@ -15,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
 
         lav?.addAnimatorListener(
             object : Animator.AnimatorListener {
-                val initialFadeInDuration = resources.getInteger(R.integer.splash_time).toLong()
+                val initialFadeInDuration = resources.getInteger(CoreResR.integer.splash_time).toLong()
 
                 override fun onAnimationStart(animation: Animator?) {
                     lav
@@ -28,8 +29,8 @@ class SplashActivity : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator?) {
                     navigateToMain()
                     overridePendingTransition(
-                        R.anim.fade_in,
-                        R.anim.fade_out
+                        CoreResR.anim.fade_in,
+                        CoreResR.anim.fade_out
                     )
                 }
 
