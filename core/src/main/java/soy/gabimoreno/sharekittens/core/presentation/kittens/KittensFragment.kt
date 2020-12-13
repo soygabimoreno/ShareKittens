@@ -11,6 +11,8 @@ import soy.gabimoreno.libframework.extension.debugToast
 import soy.gabimoreno.libframework.extension.exhaustive
 import soy.gabimoreno.sharekittens.core.R
 import soy.gabimoreno.sharekittens.core.framework.DownloadGif
+import soy.gabimoreno.sharekittens.core.presentation.kittens.domain.kittenQueries
+import kotlin.random.Random
 
 class KittensFragment : BaseFragment<
         KittensViewModel.ViewState,
@@ -32,7 +34,12 @@ class KittensFragment : BaseFragment<
     private fun initGiphyGridView() {
         ggv.showViewOnGiphy = false
 
-        val content = GPHContent.searchQuery("kitten")
+        val position = Random.nextInt(
+            0,
+            kittenQueries.size - 1
+        )
+        val query = kittenQueries[position]
+        val content = GPHContent.searchQuery(query)
         ggv.content = content
 
         ggv.callback = object : GPHGridCallback {
