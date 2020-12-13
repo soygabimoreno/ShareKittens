@@ -153,13 +153,13 @@ class MainActivity : StatelessBaseActivity<
         CustomTabsIntent.Builder()
             .setStartAnimations(
                 this,
-                R.anim.browser_in_right,
-                R.anim.browser_out_left
+                CoreResR.anim.browser_in_right,
+                CoreResR.anim.browser_out_left
             )
             .setExitAnimations(
                 this,
-                R.anim.browser_in_left,
-                R.anim.browser_out_right
+                CoreResR.anim.browser_in_left,
+                CoreResR.anim.browser_out_right
             )
             .build()
             .launchUrl(

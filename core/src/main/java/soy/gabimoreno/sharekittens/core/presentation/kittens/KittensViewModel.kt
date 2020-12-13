@@ -5,7 +5,9 @@ import com.giphy.sdk.core.models.Media
 import kotlinx.coroutines.launch
 import soy.gabimoreno.libbase.viewmodel.BaseViewModel
 import soy.gabimoreno.sharekittens.core.presentation.kittens.analytics.KittensEvents
+import soy.gabimoreno.sharekittens.core.presentation.kittens.domain.kittenQueries
 import soy.gabimoreno.sharekittens.coreanalytics.AnalyticsTrackerComponent
+import kotlin.random.Random
 
 class KittensViewModel(
     private val analyticsTrackerComponent: AnalyticsTrackerComponent
@@ -17,11 +19,16 @@ class KittensViewModel(
         handleLoadContent()
     }
 
-    private fun handleLoadContent() {
+    fun handleLoadContent() {
         analyticsTrackerComponent.trackEvent(KittensEvents.ScreenKittens)
         updateViewState(ViewState.Loading)
         viewModelScope.launch {
-            updateViewState(ViewState.Content("foo"))
+            val position = Random.nextInt(
+                0,
+                kittenQueries.size - 1
+            )
+            val query = kittenQueries[position]
+            updateViewState(ViewState.Content(query))
         }
     }
 
@@ -34,7 +41,7 @@ class KittensViewModel(
     sealed class ViewState {
         object Loading : ViewState()
         object Error : ViewState()
-        data class Content(val foo: String) : ViewState()
+        data class Content(val query: String) : ViewState()
     }
 
     sealed class ViewEvents {

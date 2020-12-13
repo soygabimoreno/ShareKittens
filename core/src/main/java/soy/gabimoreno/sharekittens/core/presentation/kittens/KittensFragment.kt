@@ -11,14 +11,12 @@ import soy.gabimoreno.libframework.extension.debugToast
 import soy.gabimoreno.libframework.extension.exhaustive
 import soy.gabimoreno.sharekittens.core.R
 import soy.gabimoreno.sharekittens.core.framework.DownloadGif
-import soy.gabimoreno.sharekittens.core.presentation.kittens.domain.kittenQueries
-import kotlin.random.Random
 
 class KittensFragment : BaseFragment<
-        KittensViewModel.ViewState,
-        KittensViewModel.ViewEvents,
-        KittensViewModel
-        >() {
+    KittensViewModel.ViewState,
+    KittensViewModel.ViewEvents,
+    KittensViewModel
+    >() {
 
     companion object {
         fun newInstance() = KittensFragment()
@@ -28,20 +26,17 @@ class KittensFragment : BaseFragment<
     override val viewModel: KittensViewModel by viewModel()
 
     override fun initUI() {
+        initSwipeRefreshLayout()
         initGiphyGridView()
     }
 
+    private fun initSwipeRefreshLayout() {
+        srl.setOnRefreshListener {
+            viewModel.handleLoadContent()
+        }
+    }
+
     private fun initGiphyGridView() {
-        ggv.showViewOnGiphy = false
-
-        val position = Random.nextInt(
-            0,
-            kittenQueries.size - 1
-        )
-        val query = kittenQueries[position]
-        val content = GPHContent.searchQuery(query)
-        ggv.content = content
-
         ggv.callback = object : GPHGridCallback {
             override fun contentDidUpdate(resultCount: Int) {
             }
@@ -56,20 +51,22 @@ class KittensFragment : BaseFragment<
         when (viewState) {
             KittensViewModel.ViewState.Loading -> showLoading()
             KittensViewModel.ViewState.Error -> showError()
-            is KittensViewModel.ViewState.Content -> showContent(viewState.foo)
+            is KittensViewModel.ViewState.Content -> showContent(viewState.query)
         }.exhaustive
     }
 
-    private fun showContent(foo: String) {
+    private fun showContent(query: String) {
         hideLoading()
+        val content = GPHContent.searchQuery(query)
+        ggv.content = content
     }
 
     private fun showLoading() {
-//        srl.isRefreshing = true
+        srl.isRefreshing = true
     }
 
     private fun hideLoading() {
-//        srl.isRefreshing = false
+        srl.isRefreshing = false
     }
 
     private fun showError() {
