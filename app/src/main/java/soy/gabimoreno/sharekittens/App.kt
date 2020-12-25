@@ -63,6 +63,8 @@ class App : Application() {
     }
 
     private fun initGiphy() {
+        val giphyApiKey = ApiKeyRetriever.getGiphyApiKey()
+        KLog.d("giphyApiKey: $giphyApiKey")
         CoroutineScope(Dispatchers.IO).launch {
             remoteConfig.getGiphyApiKey()
                 .fold(
