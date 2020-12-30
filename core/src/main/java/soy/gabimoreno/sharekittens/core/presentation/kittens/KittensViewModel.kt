@@ -12,8 +12,8 @@ import kotlin.random.Random
 class KittensViewModel(
     private val analyticsTrackerComponent: AnalyticsTrackerComponent
 ) : BaseViewModel<
-        KittensViewModel.ViewState,
-        KittensViewModel.ViewEvents>() {
+    KittensViewModel.ViewState,
+    KittensViewModel.ViewEvents>() {
 
     init {
         handleLoadContent()
@@ -34,14 +34,25 @@ class KittensViewModel(
 
     fun handleGifSelected(media: Media) {
         viewModelScope.launch {
-            sendViewEvent(ViewEvents.ShareGif(media))
+            val viewState = (getViewState() as ViewState.Content).copy(media = media)
+            updateViewState(viewState)
+        }
+    }
+
+    fun shareGif() {
+        viewModelScope.launch {
+            val media = (getViewState() as ViewState.Content).media
+            sendViewEvent(ViewEvents.ShareGif(media!!))
         }
     }
 
     sealed class ViewState {
         object Loading : ViewState()
         object Error : ViewState()
-        data class Content(val query: String) : ViewState()
+        data class Content(
+            val query: String,
+            val media: Media? = null
+        ) : ViewState()
     }
 
     sealed class ViewEvents {

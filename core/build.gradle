@@ -23,6 +23,7 @@ dependencies {
     implementation AndroidDependency.LIFECYCLE_RUNTIME
     implementation AndroidDependency.BROWSER
     implementation AndroidDependency.SWIPE_REFRESH_LAYOUT
+    implementation AndroidDependency.FRAGMENT_API
 
     implementation GoogleDependency.FIREBASE_ANALYTICS
     implementation GoogleDependency.FIREBASE_CRASHLYTICS

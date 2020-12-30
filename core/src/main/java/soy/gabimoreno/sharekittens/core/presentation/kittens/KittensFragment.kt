@@ -1,6 +1,8 @@
 package soy.gabimoreno.sharekittens.core.presentation.kittens
 
+import android.Manifest
 import android.content.Intent
+import androidx.activity.result.contract.ActivityResultContracts
 import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.ui.pagination.GPHContent
 import com.giphy.sdk.ui.views.GPHGridCallback
@@ -19,11 +21,30 @@ class KittensFragment : BaseFragment<
     >() {
 
     companion object {
+        private const val PERMISSION_WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE
+
         fun newInstance() = KittensFragment()
     }
 
     override val layoutResId = R.layout.fragment_kittens
     override val viewModel: KittensViewModel by viewModel()
+
+    private val requestWriteExternalStoragePermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            when {
+                granted -> viewModel.shareGif()
+                shouldShowRequestPermissionRationale(PERMISSION_WRITE_EXTERNAL_STORAGE) -> showRationaleForWriteExternalStorage()
+                else -> showDisabledForWriteExternalStorage()
+            }
+        }
+
+    private fun showRationaleForWriteExternalStorage() {
+        debugToast("showRationaleForWriteExternalStorage")
+    }
+
+    private fun showDisabledForWriteExternalStorage() {
+        debugToast("showDisabledForWriteExternalStorage")
+    }
 
     override fun initUI() {
         initSwipeRefreshLayout()
@@ -43,6 +64,7 @@ class KittensFragment : BaseFragment<
 
             override fun didSelectMedia(media: Media) {
                 viewModel.handleGifSelected(media)
+                requestWriteExternalStoragePermission.launch(PERMISSION_WRITE_EXTERNAL_STORAGE)
             }
         }
     }
