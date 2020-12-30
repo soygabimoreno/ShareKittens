@@ -2,6 +2,7 @@ package soy.gabimoreno.sharekittens
 
 import android.app.Application
 import android.os.StrictMode
+import android.widget.Toast
 import com.amplitude.api.AmplitudeClient
 import com.giphy.sdk.ui.Giphy
 import com.google.firebase.FirebaseApp
@@ -64,6 +65,12 @@ class App : Application() {
 
     private fun initGiphy() {
         val giphyApiKey = ApiKeyRetriever.getGiphyApiKey()
+        Toast.makeText(
+            this,
+            "giphyApiKey: $giphyApiKey",
+            Toast.LENGTH_SHORT
+        )
+            .show()
         KLog.d("giphyApiKey: $giphyApiKey")
         CoroutineScope(Dispatchers.IO).launch {
             remoteConfig.getGiphyApiKey()
