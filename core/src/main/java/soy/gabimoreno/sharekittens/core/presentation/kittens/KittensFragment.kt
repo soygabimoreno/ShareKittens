@@ -2,6 +2,8 @@ package soy.gabimoreno.sharekittens.core.presentation.kittens
 
 import android.Manifest
 import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.ui.pagination.GPHContent
@@ -13,6 +15,7 @@ import soy.gabimoreno.libframework.extension.debugToast
 import soy.gabimoreno.libframework.extension.exhaustive
 import soy.gabimoreno.sharekittens.core.R
 import soy.gabimoreno.sharekittens.core.framework.DownloadGif
+import soy.gabimoreno.sharekittens.core.framework.customview.InfoAlertDialog
 
 class KittensFragment : BaseFragment<
     KittensViewModel.ViewState,
@@ -34,16 +37,40 @@ class KittensFragment : BaseFragment<
             when {
                 granted -> viewModel.shareGif()
                 shouldShowRequestPermissionRationale(PERMISSION_WRITE_EXTERNAL_STORAGE) -> showRationaleForWriteExternalStorage()
-                else -> showDisabledForWriteExternalStorage()
+                else -> showAppSettings()
             }
         }
 
     private fun showRationaleForWriteExternalStorage() {
-        debugToast("showRationaleForWriteExternalStorage")
+        InfoAlertDialog.Builder(requireContext())
+            .drawable(R.drawable.ic_baseline_perm_media_24)
+            .title(R.string.dialog_info_title)
+            .description(R.string.dialog_info_description)
+            .btnText(R.string.dialog_info_btn_text)
+            .onButtonClicked {
+                requestWriteExternalStoragePermission.launch(PERMISSION_WRITE_EXTERNAL_STORAGE)
+            }
+            .cancelable(false)
+            .buildAndShow()
     }
 
-    private fun showDisabledForWriteExternalStorage() {
-        debugToast("showDisabledForWriteExternalStorage")
+    private fun showAppSettings() {
+        InfoAlertDialog.Builder(requireContext())
+            .drawable(R.drawable.ic_baseline_settings_applications_24)
+            .title(R.string.dialog_app_settings_title)
+            .description(R.string.dialog_app_settings_description)
+            .btnText(R.string.dialog_app_settings_btn_text)
+            .onButtonClicked {
+                Intent(
+                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:" + requireContext().applicationContext.packageName)
+                ).apply {
+                    addCategory("android.intent.category.DEFAULT")
+                    startActivity(this)
+                }
+            }
+            .cancelable(false)
+            .buildAndShow()
     }
 
     override fun initUI() {

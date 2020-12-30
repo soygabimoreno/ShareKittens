@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_info_title">Files permission required</string>
+    <string name="dialog_info_description">We need access to the storage to share the kittens</string>
+    <string name="dialog_info_btn_text">Request again</string>
+    <string name="dialog_app_settings_title">Grant permissions</string>
+    <string name="dialog_app_settings_description">Please, add manually the required permissions.\n\nThey are required to use the app.</string>
+    <string name="dialog_app_settings_btn_text">OK</string>
+</resources>
