@@ -7,4 +7,5 @@ object ApiKeyRetriever {
     }
 
     external fun getGiphyApiKey(): String
+    external fun getAmplitudeApiKey(): String
 }
