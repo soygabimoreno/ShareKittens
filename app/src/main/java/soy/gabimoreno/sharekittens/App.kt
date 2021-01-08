@@ -1,3 +1,4 @@
+
 package soy.gabimoreno.sharekittens
 
 import android.app.Application
