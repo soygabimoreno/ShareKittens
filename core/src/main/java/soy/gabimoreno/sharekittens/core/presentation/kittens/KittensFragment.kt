@@ -13,6 +13,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import soy.gabimoreno.libbase.fragment.BaseFragment
 import soy.gabimoreno.libframework.extension.debugToast
 import soy.gabimoreno.libframework.extension.exhaustive
+import soy.gabimoreno.libframework.extension.gone
+import soy.gabimoreno.libframework.extension.visible
 import soy.gabimoreno.sharekittens.core.R
 import soy.gabimoreno.sharekittens.core.framework.DownloadGif
 import soy.gabimoreno.sharekittens.core.framework.customview.InfoAlertDialog
@@ -126,6 +128,8 @@ class KittensFragment : BaseFragment<
     override fun handleViewEvent(viewEvent: KittensViewModel.ViewEvents) {
         when (viewEvent) {
             is KittensViewModel.ViewEvents.ShareGif -> shareGif(viewEvent.media)
+            KittensViewModel.ViewEvents.ShowOverlay -> showOverlay()
+            KittensViewModel.ViewEvents.HideOverlay -> hideOverlay()
         }.exhaustive
     }
 
@@ -136,6 +140,7 @@ class KittensFragment : BaseFragment<
             requireContext(),
             url
         ) { uri ->
+            viewModel.handleGifDownloaded()
             val sendIntent = Intent().apply {
                 type = "image/gif"
                 action = Intent.ACTION_SEND
@@ -153,5 +158,13 @@ class KittensFragment : BaseFragment<
                 debugToast("e: ${e.message}")
             }
         }
+    }
+
+    private fun showOverlay() {
+        clOverlay.visible()
+    }
+
+    private fun hideOverlay() {
+        clOverlay.gone()
     }
 }

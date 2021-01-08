@@ -34,6 +34,7 @@ class KittensViewModel(
 
     fun handleGifSelected(media: Media) {
         viewModelScope.launch {
+            sendViewEvent(ViewEvents.ShowOverlay)
             val viewState = (getViewState() as ViewState.Content).copy(media = media)
             updateViewState(viewState)
         }
@@ -43,6 +44,12 @@ class KittensViewModel(
         viewModelScope.launch {
             val media = (getViewState() as ViewState.Content).media
             sendViewEvent(ViewEvents.ShareGif(media!!))
+        }
+    }
+
+    fun handleGifDownloaded() {
+        viewModelScope.launch {
+            sendViewEvent(ViewEvents.HideOverlay)
         }
     }
 
@@ -57,5 +64,7 @@ class KittensViewModel(
 
     sealed class ViewEvents {
         data class ShareGif(val media: Media) : ViewEvents()
+        object ShowOverlay : ViewEvents()
+        object HideOverlay : ViewEvents()
     }
 }
