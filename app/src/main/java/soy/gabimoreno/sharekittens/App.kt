@@ -4,6 +4,7 @@ package soy.gabimoreno.sharekittens
 import android.app.Application
 import android.os.StrictMode
 import com.amplitude.api.AmplitudeClient
+import com.facebook.ads.AudienceNetworkAds
 import com.giphy.sdk.ui.Giphy
 import com.google.firebase.FirebaseApp
 import org.koin.android.ext.android.inject
@@ -23,6 +24,7 @@ class App : Application() {
         initFirebase()
         initAmplitude()
         initGiphy()
+        initFacebookAudience()
         enableShareGifs()
     }
 
@@ -53,6 +55,10 @@ class App : Application() {
             this,
             giphyApiKey
         )
+    }
+
+    private fun initFacebookAudience() {
+        AudienceNetworkAds.initialize(this)
     }
 
     private fun enableShareGifs() {

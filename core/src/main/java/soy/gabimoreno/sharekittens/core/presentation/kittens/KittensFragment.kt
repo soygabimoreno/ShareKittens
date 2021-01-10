@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
+import com.facebook.ads.AdSize
+import com.facebook.ads.AdView
 import com.giphy.sdk.core.models.Media
 import com.giphy.sdk.ui.pagination.GPHContent
 import com.giphy.sdk.ui.views.GPHGridCallback
@@ -78,6 +80,7 @@ class KittensFragment : BaseFragment<
     override fun initUI() {
         initSwipeRefreshLayout()
         initGiphyGridView()
+        initFacebookAdd()
     }
 
     private fun initSwipeRefreshLayout() {
@@ -96,6 +99,17 @@ class KittensFragment : BaseFragment<
                 requestWriteExternalStoragePermission.launch(PERMISSION_WRITE_EXTERNAL_STORAGE)
             }
         }
+    }
+
+    private fun initFacebookAdd() {
+        val adView = AdView(
+            requireContext(),
+            "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID",
+            AdSize.BANNER_HEIGHT_50
+        )
+
+        clFacebookAdd.addView(adView)
+        adView.loadAd()
     }
 
     override fun renderViewState(viewState: KittensViewModel.ViewState) {

@@ -47,6 +47,7 @@ dependencies {
     implementation MiscellanyDependency.VIEW_PAGER_DOTS_INDICATOR
     implementation MiscellanyDependency.CIRCULAR_IMAGE_VIEW
     implementation MiscellanyDependency.GIPHY
+    implementation MiscellanyDependency.FACEBOOK_AUDIENCE
 
     testImplementation TestDependency.J_UNIT
     testImplementation TestDependency.MOCKK

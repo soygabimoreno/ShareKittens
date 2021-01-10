@@ -29,6 +29,7 @@ object Version {
     const val VIEW_PAGER_DOTS_INDICATOR = "4.1.2"
     const val CIRCULAR_IMAGE_VIEW = "3.1.0"
     const val GIPHY = "2.0.5"
+    const val FACEBOOK_AUDIENCE = "6.2.0"
 }
 
 object TestVersion {
@@ -141,6 +142,7 @@ object MiscellanyDependency {
     const val VIEW_PAGER_DOTS_INDICATOR = "com.tbuonomo.andrui:viewpagerdotsindicator:${Version.VIEW_PAGER_DOTS_INDICATOR}"
     const val CIRCULAR_IMAGE_VIEW = "de.hdodenhof:circleimageview:${Version.CIRCULAR_IMAGE_VIEW}"
     const val GIPHY = "com.giphy.sdk:ui:${Version.GIPHY}"
+    const val FACEBOOK_AUDIENCE = "com.facebook.android:audience-network-sdk:${Version.FACEBOOK_AUDIENCE}"
 }
 
 object TestDependency {
