@@ -5,6 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
+import com.facebook.ads.Ad
+import com.facebook.ads.AdError
+import com.facebook.ads.AdListener
 import com.facebook.ads.AdSize
 import com.facebook.ads.AdView
 import com.giphy.sdk.core.models.Media
@@ -44,6 +47,13 @@ class KittensFragment : BaseFragment<
                 else -> showAppSettings()
             }
         }
+
+    private lateinit var adView: AdView
+
+    override fun onDestroy() {
+        adView.destroy()
+        super.onDestroy()
+    }
 
     private fun showRationaleForWriteExternalStorage() {
         InfoAlertDialog.Builder(requireContext())
@@ -102,14 +112,38 @@ class KittensFragment : BaseFragment<
     }
 
     private fun initFacebookAdd() {
-        val adView = AdView(
+        adView = AdView(
             requireContext(),
             "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID",
             AdSize.BANNER_HEIGHT_50
         )
 
         clFacebookAdd.addView(adView)
-        adView.loadAd()
+        adView.loadAd(adView.buildLoadAdConfig()
+                          .withAdListener(
+                              object : AdListener {
+                                  override fun onError(
+                                      ad: Ad?,
+                                      adError: AdError?
+                                  ) {
+                                      val error = "${adError?.errorCode} ${adError?.errorMessage}"
+                                      viewModel.handleOnAdError(error)
+                                  }
+
+                                  override fun onAdLoaded(ad: Ad?) {
+                                      viewModel.handleOnAdLoaded()
+                                  }
+
+                                  override fun onAdClicked(ad: Ad?) {
+                                      viewModel.handleOnAdClicked()
+                                  }
+
+                                  override fun onLoggingImpression(ad: Ad?) {
+                                      viewModel.handleOnLoggingImpression()
+                                  }
+                              }
+                          )
+                          .build())
     }
 
     override fun renderViewState(viewState: KittensViewModel.ViewState) {

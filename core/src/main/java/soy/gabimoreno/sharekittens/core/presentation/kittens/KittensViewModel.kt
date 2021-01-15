@@ -53,6 +53,22 @@ class KittensViewModel(
         }
     }
 
+    fun handleOnAdError(error: String) {
+        analyticsTrackerComponent.trackEvent(KittensEvents.AdError(error))
+    }
+
+    fun handleOnAdLoaded() {
+        analyticsTrackerComponent.trackEvent(KittensEvents.AdLoaded)
+    }
+
+    fun handleOnAdClicked() {
+        analyticsTrackerComponent.trackEvent(KittensEvents.AdClicked)
+    }
+
+    fun handleOnLoggingImpression() {
+        analyticsTrackerComponent.trackEvent(KittensEvents.AdLoggingImpression)
+    }
+
     sealed class ViewState {
         object Loading : ViewState()
         object Error : ViewState()
