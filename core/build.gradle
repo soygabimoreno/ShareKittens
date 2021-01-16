@@ -1,5 +1,13 @@
 apply from: "$rootDir/common-android-library.gradle"
 
+android {
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+        }
+    }
+}
+
 dependencies {
     //    implementation project(ModulesDependency.CORE_DOMAIN)
 //    implementation project(ModulesDependency.CORE_INFRASTRUCTURE)

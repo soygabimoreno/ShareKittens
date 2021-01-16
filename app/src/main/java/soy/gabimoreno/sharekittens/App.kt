@@ -13,6 +13,7 @@ import org.koin.android.logger.AndroidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import soy.gabimoreno.libframework.KLog
+import soy.gabimoreno.sharekittens.core.ApiKeyRetriever
 import soy.gabimoreno.sharekittens.di.serviceLocator
 
 class App : Application() {

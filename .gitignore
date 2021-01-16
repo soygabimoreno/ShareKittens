@@ -86,4 +86,4 @@ lint/tmp/
 /.idea/
 
 # API Keys
-app/src/main/cpp/api-keys.cpp
+core/src/main/cpp/api-keys.cpp

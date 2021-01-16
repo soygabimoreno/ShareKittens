@@ -1,4 +1,4 @@
-package soy.gabimoreno.sharekittens
+package soy.gabimoreno.sharekittens.core
 
 object ApiKeyRetriever {
 
@@ -8,4 +8,5 @@ object ApiKeyRetriever {
 
     external fun getGiphyApiKey(): String
     external fun getAmplitudeApiKey(): String
+    external fun getFacebookAudiencePlacementId(): String
 }

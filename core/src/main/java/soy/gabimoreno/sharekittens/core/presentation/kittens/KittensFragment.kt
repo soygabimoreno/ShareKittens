@@ -20,6 +20,7 @@ import soy.gabimoreno.libframework.extension.debugToast
 import soy.gabimoreno.libframework.extension.exhaustive
 import soy.gabimoreno.libframework.extension.gone
 import soy.gabimoreno.libframework.extension.visible
+import soy.gabimoreno.sharekittens.core.ApiKeyRetriever
 import soy.gabimoreno.sharekittens.core.R
 import soy.gabimoreno.sharekittens.core.framework.DownloadGif
 import soy.gabimoreno.sharekittens.core.framework.customview.InfoAlertDialog
@@ -112,9 +113,10 @@ class KittensFragment : BaseFragment<
     }
 
     private fun initFacebookAdd() {
+        val facebookAudiencePlacementId = ApiKeyRetriever.getFacebookAudiencePlacementId()
         adView = AdView(
             requireContext(),
-            "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID",
+            facebookAudiencePlacementId,
             AdSize.BANNER_HEIGHT_50
         )
 
