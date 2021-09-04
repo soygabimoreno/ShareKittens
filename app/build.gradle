@@ -54,12 +54,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     testOptions {
@@ -77,14 +77,13 @@ dependencies {
 
     implementation KotlinDependency.COROUTINES
 
-    implementation GoogleDependency.FIREBASE_ANALYTICS
-    implementation GoogleDependency.FIREBASE_CRASHLYTICS
+    implementation FirebaseBomDependency.FIREBASE_ANALYTICS
+    implementation FirebaseBomDependency.FIREBASE_CRASHLYTICS
 
     implementation KoinDependency.KOIN_SCOPE
     implementation KoinDependency.KOIN_VIEW_MODEL
 
     implementation ArrowDependency.ARROW_CORE
-    implementation ArrowDependency.ARROW_SYNTAX
     kapt ArrowDependency.ARROW_META
     implementation MiscellanyDependency.GIPHY
 

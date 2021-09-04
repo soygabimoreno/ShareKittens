@@ -1,33 +1,30 @@
 buildscript {
-    ext.kotlin_version = "1.4.21"
+    ext.kotlin_version = "1.5.30"
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath 'com.android.tools.build:gradle:7.0.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.4'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.1'
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
-        maven {
-            url "http://giphy.bintray.com/giphy-sdk"
-        }
+        mavenCentral()
     }
 
     project.ext {
-        compileSdkVersion = 30
-        buildToolsVersion = "30.0.2"
+        compileSdkVersion = 31
+        buildToolsVersion = "31.0.0"
         minSdkVersion = 23
         targetSdkVersion = 30
         versionCode = 11
-        versionName = "0.5.1"
+        versionName = "0.6.0"
     }
 }
 

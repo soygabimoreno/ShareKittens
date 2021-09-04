@@ -1,5 +1,6 @@
 package soy.gabimoreno.sharekittens.core.framework
 
+import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -25,6 +26,7 @@ class DownloadGif {
     ) {
         deleteLastFileIfExists()
         val receiver: BroadcastReceiver = object : BroadcastReceiver() {
+            @SuppressLint("Range")
             override fun onReceive(
                 context: Context,
                 intent: Intent

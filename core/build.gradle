@@ -33,8 +33,8 @@ dependencies {
     implementation AndroidDependency.SWIPE_REFRESH_LAYOUT
     implementation AndroidDependency.FRAGMENT_API
 
-    implementation GoogleDependency.FIREBASE_ANALYTICS
-    implementation GoogleDependency.FIREBASE_CRASHLYTICS
+    implementation FirebaseBomDependency.FIREBASE_ANALYTICS
+    implementation FirebaseBomDependency.FIREBASE_CRASHLYTICS
     implementation GoogleDependency.MATERIAL
     implementation GoogleDependency.EXO_PLAYER_CORE
     implementation GoogleDependency.EXO_PLAYER_UI
@@ -43,7 +43,6 @@ dependencies {
     implementation KoinDependency.KOIN_VIEW_MODEL
 
     implementation ArrowDependency.ARROW_CORE
-    implementation ArrowDependency.ARROW_SYNTAX
     kapt ArrowDependency.ARROW_META
 
     implementation KarumiDependency.DEXTER

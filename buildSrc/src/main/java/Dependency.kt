@@ -1,34 +1,32 @@
 object Version {
-    const val KOTLIN = "1.4.10"
+    const val KOTLIN = "1.5.30"
     const val FIREBASE_BOM = "25.12.0"
 
-    const val CORE_KTX = "1.3.1"
-    const val COROUTINES = "1.3.9"
-    const val APP_COMPAT = "1.2.0"
-    const val CONSTRAINT_LAYOUT = "2.0.1"
-    const val LIFECYCLE = "2.2.0"
-    const val BROWSER = "1.2.0"
-    const val RECYCLER_VIEW = "1.2.0-alpha02"
+    const val CORE_KTX = "1.6.0"
+    const val COROUTINES = "1.5.0"
+    const val APP_COMPAT = "1.3.1"
+    const val CONSTRAINT_LAYOUT = "2.1.0"
+    const val RECYCLER_VIEW = "1.2.1"
+    const val LIFECYCLE = "2.3.1"
+    const val BROWSER = "1.3.0"
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
-    const val FRAGMENT_API = "1.3.0-beta01"
+    const val FRAGMENT_API = "1.3.6"
     const val RETROFIT = "2.9.0"
-    const val ROOM = "2.2.5"
-    const val OK_HTTP_LOGGING_INTERCEPTOR = "4.8.1"
-    const val FIREBASE_ANALYTICS = "17.5.0"
-    const val FIREBASE_CRASHLYTICS = "17.2.1"
-    const val MATERIAL = "1.2.1"
-    const val EXO_PLAYER = "2.12.0"
-    const val GSON = "2.8.5"
-    const val KOIN = "2.2.0-rc-1"
-    const val ARROW = "0.10.5"
+    const val ROOM = "2.3.0"
+    const val OK_HTTP_LOGGING_INTERCEPTOR = "4.9.1"
+    const val MATERIAL = "1.4.0"
+    const val EXO_PLAYER = "2.15.0"
+    const val GSON = "2.8.6"
+    const val KOIN = "2.2.2"
+    const val ARROW = "0.13.2"
     const val DEXTER = "6.2.1"
     const val LOTTIE = "3.4.2"
     const val GLIDE = "4.11.0"
-    const val AMPLITUDE = "2.25.2"
-    const val OK_HTTP = "4.8.1"
-    const val VIEW_PAGER_DOTS_INDICATOR = "4.1.2"
+    const val AMPLITUDE = "2.32.1"
+    const val OK_HTTP = "4.9.1"
+    const val VIEW_PAGER_DOTS_INDICATOR = "4.2"
     const val CIRCULAR_IMAGE_VIEW = "3.1.0"
-    const val GIPHY = "2.0.5"
+    const val GIPHY = "2.1.6"
     const val FACEBOOK_AUDIENCE = "6.2.0"
 }
 
@@ -100,8 +98,6 @@ object FirebaseBomDependency {
 }
 
 object GoogleDependency {
-    const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx:${Version.FIREBASE_ANALYTICS}"
-    const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics:${Version.FIREBASE_CRASHLYTICS}"
     const val MATERIAL = "com.google.android.material:material:${Version.MATERIAL}"
     const val EXO_PLAYER_CORE = "com.google.android.exoplayer:exoplayer-core:${Version.EXO_PLAYER}"
     const val EXO_PLAYER_UI = "com.google.android.exoplayer:exoplayer-ui:${Version.EXO_PLAYER}"
@@ -109,14 +105,13 @@ object GoogleDependency {
 }
 
 object KoinDependency {
-    const val KOIN_CORE = "org.koin:koin-core:${Version.KOIN}"
-    const val KOIN_SCOPE = "org.koin:koin-androidx-scope:${Version.KOIN}"
-    const val KOIN_VIEW_MODEL = "org.koin:koin-androidx-viewmodel:${Version.KOIN}"
+    const val KOIN_CORE = "io.insert-koin:koin-core:${Version.KOIN}"
+    const val KOIN_SCOPE = "io.insert-koin:koin-androidx-scope:${Version.KOIN}"
+    const val KOIN_VIEW_MODEL = "io.insert-koin:koin-androidx-viewmodel:${Version.KOIN}"
 }
 
 object ArrowDependency {
     const val ARROW_CORE = "io.arrow-kt:arrow-core:${Version.ARROW}"
-    const val ARROW_SYNTAX = "io.arrow-kt:arrow-syntax:${Version.ARROW}"
     const val ARROW_META = "io.arrow-kt:arrow-meta:${Version.ARROW}"
 }
 
@@ -139,7 +134,7 @@ object AmplitudeDependency {
 }
 
 object MiscellanyDependency {
-    const val VIEW_PAGER_DOTS_INDICATOR = "com.tbuonomo.andrui:viewpagerdotsindicator:${Version.VIEW_PAGER_DOTS_INDICATOR}"
+    const val VIEW_PAGER_DOTS_INDICATOR = "com.tbuonomo:dotsindicator:${Version.VIEW_PAGER_DOTS_INDICATOR}"
     const val CIRCULAR_IMAGE_VIEW = "de.hdodenhof:circleimageview:${Version.CIRCULAR_IMAGE_VIEW}"
     const val GIPHY = "com.giphy.sdk:ui:${Version.GIPHY}"
     const val FACEBOOK_AUDIENCE = "com.facebook.android:audience-network-sdk:${Version.FACEBOOK_AUDIENCE}"
@@ -156,7 +151,7 @@ object AndroidTestDependency {
     const val J_UNIT_EXT = "androidx.test.ext:junit-ktx:${TestVersion.J_UNIT_EXT}"
     const val TEST_RUNNER = "androidx.test:runner:${TestVersion.TEST_RUNNER}"
     const val TEST_RULES = "androidx.test:rules:${TestVersion.TEST_RUNNER}"
-    const val KOIN_TEST = "org.koin:koin-test:${Version.KOIN}"
+    const val KOIN_TEST = "io.insert-koin:koin-test:${Version.KOIN}"
     const val MOCKK_ANDROID = "io.mockk:mockk-android:${TestVersion.MOCKK}"
     const val BARISTA = "com.schibsted.spain:barista:${TestVersion.BARISTA}"
     const val ARCH_CORE_TESTING = "androidx.arch.core:core-testing:${TestVersion.ARCH_CORE_TEST}"
